@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>V&amp;M Motor Care — Issaquah Auto Detailing</title>
+  <meta name="description" content="Professional detailing for cars, boats, and RVs in Issaquah, WA. Quality results at prices that won't break the bank. V&amp;M Motor Care.">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --navy: #080f1a;
+      --dark: #111d2b;
+      --accent: #e63946;
+      --gold: #f4a261;
+      --light: #f1faee;
+      --gray: #c9a84c;
+      --white: #ffffff;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--navy);
+      overscroll-behavior: none;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: var(--light);
+      background: var(--navy);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(8, 15, 26, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 45px;
+      width: auto;
+      mix-blend-mode: lighten;
+    }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+
+    .nav-links a {
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--white); }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(230,57,70,0.10) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 20% 80%, rgba(201,168,76,0.07) 0%, transparent 50%),
+        radial-gradient(ellipse 50% 40% at 80% 20%, rgba(201,168,76,0.05) 0%, transparent 50%);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 100px,
+          rgba(255,255,255,0.015) 100px,
+          rgba(255,255,255,0.015) 101px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 100px,
+          rgba(255,255,255,0.015) 100px,
+          rgba(255,255,255,0.015) 101px
+        );
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      gap: 0;
+      padding: 0;
+      opacity: 0.15;
+    }
+
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero > *:not(.hero-bg) { position: relative; z-index: 3; }
+
+    .hero-logo {
+      width: 220px;
+      height: auto;
+      margin-bottom: 2rem;
+      border-radius: 16px;
+      mix-blend-mode: lighten;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 0.4rem 1.2rem;
+      border: 1px solid var(--accent);
+      border-radius: 50px;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      color: var(--white);
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 550px;
+      color: var(--gray);
+      margin-bottom: 2.5rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.9rem 2.5rem;
+      background: var(--accent);
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(230, 57, 70, 0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--gray);
+      color: var(--gray);
+      margin-left: 1rem;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--white);
+      color: var(--white);
+      box-shadow: none;
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 5rem 2rem;
+      margin-top: -1px;
+      border-top: 1px solid transparent;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .section-header h2 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-header p {
+      color: var(--gray);
+      font-size: 1.05rem;
+    }
+
+    .section-header .bar {
+      width: 50px;
+      height: 3px;
+      background: var(--accent);
+      margin: 1rem auto 0;
+      border-radius: 2px;
+    }
+
+    /* SERVICES */
+    #services { background: var(--navy); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      justify-content: center;
+    }
+
+    .service-card {
+      background: var(--navy);
+      border-radius: 12px;
+      padding: 2.5rem 2rem;
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+    }
+
+    .service-icon {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .service-card h3 {
+      font-size: 1.25rem;
+      color: var(--white);
+      margin-bottom: 0.75rem;
+    }
+
+    .service-card p {
+      color: var(--gray);
+      font-size: 0.95rem;
+    }
+
+    /* PRICING */
+    #pricing { background: var(--navy); }
+
+    .pricing-layout {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .pricing-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .price-card {
+      background: var(--dark);
+      border-radius: 12px;
+      padding: 2.5rem;
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: transform 0.2s;
+    }
+
+    .price-card:hover { transform: translateY(-4px); }
+
+    .price-card h3 {
+      font-size: 1.3rem;
+      color: var(--white);
+      margin-bottom: 0.25rem;
+    }
+
+    .price-card .price-total {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--white);
+      margin: 0.75rem 0;
+    }
+
+    .price-card .price-label {
+      font-size: 0.85rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .price-breakdown {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .price-breakdown li {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.6rem 0;
+      color: var(--gray);
+      font-size: 0.95rem;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .price-breakdown li span { color: var(--white); font-weight: 600; }
+
+    .extras-card {
+      background: var(--dark);
+      border-radius: 12px;
+      padding: 2.5rem;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .extras-card h3 {
+      font-size: 1.3rem;
+      color: var(--white);
+      margin-bottom: 1.25rem;
+    }
+
+    .extras-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0;
+    }
+
+    .extras-grid li {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.6rem 1rem 0.6rem 0;
+      color: var(--gray);
+      font-size: 0.95rem;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .extras-grid li span { color: var(--white); font-weight: 600; }
+
+    .pricing-note {
+      text-align: center;
+      color: var(--gold);
+      font-size: 0.9rem;
+      margin-top: 1.5rem;
+      font-style: italic;
+    }
+
+    .pet-hair-banner {
+      background: var(--accent);
+      color: var(--white);
+      text-align: center;
+      padding: 1.2rem 2rem;
+      border-radius: 12px;
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 2rem;
+    }
+
+    /* GALLERY */
+    #gallery { background: var(--navy); }
+
+    .gallery-pairs {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .gallery-pair {
+      background: var(--dark);
+      border-radius: 12px;
+      padding: 2rem;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .gallery-pair h3 {
+      color: var(--white);
+      font-size: 1.2rem;
+      margin-bottom: 1.25rem;
+      text-align: center;
+    }
+
+    .pair-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .pair-images.triple {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .pair-slot {
+      text-align: center;
+    }
+
+    .pair-slot img {
+      width: 100%;
+      border-radius: 8px;
+      object-fit: cover;
+      aspect-ratio: 4/3;
+      background: var(--navy);
+    }
+
+    .pair-label {
+      display: inline-block;
+      margin-top: 0.4rem;
+      padding: 0.25rem 0.9rem;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .label-before {
+      background: rgba(255,255,255,0.08);
+      color: var(--gray);
+    }
+
+    .label-progress {
+      background: rgba(244,162,97,0.2);
+      color: var(--gold);
+    }
+
+    .label-after {
+      background: rgba(230,57,70,0.2);
+      color: var(--accent);
+    }
+
+    .showcase-grid {
+      max-width: 1100px;
+      margin: 2.5rem auto 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+
+    .showcase-grid img {
+      width: 100%;
+      border-radius: 8px;
+      object-fit: cover;
+      aspect-ratio: 4/3;
+      background: var(--navy);
+      transition: transform 0.2s;
+    }
+
+    .showcase-grid img:hover { transform: scale(1.03); }
+
+    .gallery-divider {
+      text-align: center;
+      color: var(--gray);
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 2.5rem auto 0;
+      max-width: 1100px;
+    }
+
+    @media (max-width: 768px) {
+      .pair-images, .pair-images.triple {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* REVIEWS */
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .review-card {
+      background: var(--dark);
+      border-radius: 12px;
+      padding: 2rem;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .review-stars {
+      color: var(--gold);
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+      letter-spacing: 2px;
+    }
+
+    .review-card p {
+      color: var(--gray);
+      font-size: 0.95rem;
+      font-style: italic;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .review-author {
+      color: var(--white);
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .review-source {
+      color: var(--gray);
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
+
+    /* ABOUT */
+    .about-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .about-content p {
+      color: var(--gray);
+      font-size: 1.05rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .about-highlights {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+      justify-content: center;
+    }
+
+    .about-stat {
+      background: var(--dark);
+      border-radius: 12px;
+      padding: 1.5rem;
+      border: 1px solid rgba(255,255,255,0.05);
+      text-align: center;
+    }
+
+    .about-stat .stat-icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .about-stat h4 {
+      color: var(--white);
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .about-stat p {
+      color: var(--gray);
+      font-size: 0.85rem;
+      margin-bottom: 0;
+    }
+
+    /* CONTACT */
+    #contact { background: var(--navy); }
+
+    .contact-content {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .contact-content p {
+      color: var(--gray);
+      font-size: 1.05rem;
+      margin-bottom: 2rem;
+    }
+
+    .contact-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 2.5rem;
+      justify-content: center;
+    }
+
+    .contact-item {
+      background: var(--navy);
+      padding: 2rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.05);
+      white-space: nowrap;
+    }
+
+    .contact-item .icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+
+    .contact-item h4 {
+      color: var(--white);
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .contact-item p {
+      color: var(--gray);
+      font-size: 0.8rem;
+      margin-bottom: 0;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--navy);
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      color: var(--gray);
+      font-size: 0.85rem;
+    }
+
+    .footer-logo {
+      width: 100px;
+      height: auto;
+      margin-bottom: 0.75rem;
+      mix-blend-mode: lighten;
+    }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(8,15,26,0.98);
+        padding: 1.5rem 2rem;
+        gap: 1rem;
+      }
+      .menu-toggle { display: block; }
+      .hero { padding: 8rem 1.5rem 4rem; }
+      .btn-outline { margin-left: 0; margin-top: 0.75rem; display: block; }
+      .hero-buttons { display: flex; flex-direction: column; align-items: center; }
+      section { padding: 3.5rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="logo"><img src="vandm%20assets/logo/unnamed.jpg" alt="V&amp;M Motor Care"></a>
+    <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle menu">&#9776;</button>
+    <ul class="nav-links">
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg">
+      <img src="vandm%20assets/after/IMG_6076.jpeg" alt="">
+      <img src="vandm%20assets/after/IMG_6079.jpeg" alt="">
+      <img src="vandm%20assets/after/IMG_7250.jpeg" alt="">
+      <img src="vandm%20assets/after/IMG_6211.jpeg" alt="">
+      <img src="vandm%20assets/after/Screenshot%20From%202026-04-21%2022-55-26.png" alt="">
+      <img src="vandm%20assets/after/IMG_6078.jpeg" alt="">
+    </div>
+    <img src="vandm%20assets/logo/unnamed.jpg" alt="V&amp;M Motor Care logo" class="hero-logo">
+    <div class="hero-badge">Issaquah, WA</div>
+    <h1>Premium Detail.<br><em>Honest Price.</em></h1>
+    <p>Issaquah's go-to detailing for cars, boats, and RVs — meticulous care for your vehicle without the premium markup.</p>
+    <div class="hero-buttons">
+      <a href="#pricing" class="btn">View Packages</a>
+      <a href="#contact" class="btn btn-outline">Get in Touch</a>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+    <div class="section-header">
+      <h2>Our Work</h2>
+      <p>Real results — see the difference for yourself</p>
+      <div class="bar"></div>
+    </div>
+
+    <div class="gallery-pairs">
+      <!-- Porsche Cayenne S -->
+      <div class="gallery-pair">
+        <h3>Porsche Cayenne S — Full Detail</h3>
+        <div class="pair-images triple">
+          <div class="pair-slot">
+            <img src="vandm%20assets/before/IMG_6221.jpeg" alt="Porsche Cayenne S interior before detail">
+            <div><span class="pair-label label-before">Before</span></div>
+          </div>
+          <div class="pair-slot">
+            <img src="vandm%20assets/worked on/IMG_6206.jpeg" alt="Porsche Cayenne S being foam washed">
+            <div><span class="pair-label label-progress">During Service</span></div>
+          </div>
+          <div class="pair-slot">
+            <img src="vandm%20assets/after/IMG_6211.jpeg" alt="Porsche Cayenne S interior after detail">
+            <div><span class="pair-label label-after">After</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- White Sedan -->
+      <div class="gallery-pair">
+        <h3>Honda Civic — Interior Detail</h3>
+        <div class="pair-images">
+          <div class="pair-slot">
+            <img src="vandm%20assets/before/IMG_6225.jpeg" alt="Sedan interior before detail">
+            <div><span class="pair-label label-before">Before</span></div>
+          </div>
+          <div class="pair-slot">
+            <img src="vandm%20assets/after/IMG_6229.jpeg" alt="Sedan interior after detail">
+            <div><span class="pair-label label-after">After</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carpet / Headliner -->
+      <div class="gallery-pair">
+        <h3>Carpet Deep Clean</h3>
+        <div class="pair-images">
+          <div class="pair-slot">
+            <img src="vandm%20assets/before/Screenshot%20From%202026-04-21%2022-54-14.png" alt="Carpet before cleaning">
+            <div><span class="pair-label label-before">Before</span></div>
+          </div>
+          <div class="pair-slot">
+            <img src="vandm%20assets/after/Screenshot%20From%202026-04-21%2022-54-40.png" alt="Carpet after cleaning">
+            <div><span class="pair-label label-after">After</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Black Tahoe -->
+      <div class="gallery-pair">
+        <h3>Chevy Tahoe — Exterior Wash</h3>
+        <div class="pair-images triple">
+          <div class="pair-slot">
+            <img src="vandm%20assets/worked on/IMG_7907.jpeg" alt="Tahoe being foam washed">
+            <div><span class="pair-label label-progress">During Service</span></div>
+          </div>
+          <div class="pair-slot">
+            <img src="vandm%20assets/after/IMG_7908.jpeg" alt="Tahoe after detail through window">
+            <div><span class="pair-label label-after">After</span></div>
+          </div>
+          <div class="pair-slot">
+            <img src="vandm%20assets/after/Screenshot%20From%202026-04-21%2022-55-26.png" alt="Tahoe after detail exterior">
+            <div><span class="pair-label label-after">After</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Showcase -->
+    <div class="gallery-divider">More Happy Clients</div>
+    <div class="showcase-grid">
+      <img src="vandm%20assets/after/IMG_6076.jpeg" alt="Mercedes G-Wagon exterior after detail">
+      <img src="vandm%20assets/after/IMG_6078.jpeg" alt="Mercedes G-Wagon AMG rear seats after detail">
+      <img src="vandm%20assets/after/IMG_6079.jpeg" alt="Mercedes G-Wagon AMG interior after detail">
+      <img src="vandm%20assets/after/IMG_7250.jpeg" alt="Lexus exterior after detail">
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="section-header">
+      <h2>What We Do</h2>
+      <p>Comprehensive detailing for cars, boats, and RVs</p>
+      <div class="bar"></div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">&#x1F9FC;</div>
+        <h3>Exterior Wash & Detail</h3>
+        <p>Hand wash, clay bar treatment, polish, and sealant. Your paint protected and looking showroom-fresh.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">&#x2728;</div>
+        <h3>Interior Deep Clean</h3>
+        <p>Full vacuum, steam cleaning, leather conditioning, and dashboard restoration. Every surface addressed.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">&#x1F6E1;&#xFE0F;</div>
+        <h3>Paint Correction</h3>
+        <p>Multi-stage polishing to remove swirl marks, scratches, and oxidation. Restore your factory finish.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">&#x1F48E;</div>
+        <h3>Ceramic Coating</h3>
+        <p>Long-lasting hydrophobic protection that keeps your car cleaner longer and easier to maintain.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <div class="section-header">
+      <h2>Packages</h2>
+      <p>Great results at a fair price — no upsell, no surprises</p>
+      <div class="bar"></div>
+    </div>
+    <div class="pricing-layout">
+      <div class="pet-hair-banner">Pet Hair: +$30 On Top of Base Price</div>
+      <div class="pricing-row">
+        <div class="price-card">
+          <h3>Hatchbacks / Small Sedans</h3>
+          <div class="price-total">$135</div>
+          <div class="price-label">Full detail (interior + exterior)</div>
+          <ul class="price-breakdown">
+            <li>Exterior <span>$55</span></li>
+            <li>Interior <span>$80</span></li>
+          </ul>
+        </div>
+        <div class="price-card">
+          <h3>Sedans / Small SUVs</h3>
+          <div class="price-total">$165</div>
+          <div class="price-label">Full detail (interior + exterior)</div>
+          <ul class="price-breakdown">
+            <li>Exterior <span>$65</span></li>
+            <li>Interior <span>$100</span></li>
+          </ul>
+        </div>
+        <div class="price-card">
+          <h3>Full-Sized SUVs / Trucks</h3>
+          <div class="price-total">$200</div>
+          <div class="price-label">Full detail (interior + exterior)</div>
+          <ul class="price-breakdown">
+            <li>Exterior <span>$80</span></li>
+            <li>Interior <span>$120</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="extras-card">
+        <h3>Extras</h3>
+        <ul class="extras-grid">
+          <li>Ceramic Coat <span>$15</span></li>
+          <li>Wax <span>$25</span></li>
+          <li>Polish <span>$25</span></li>
+          <li>Wax, Polish &amp; Clay Bar <span>$70</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="reviews">
+    <div class="section-header">
+      <h2>What Our Clients Say</h2>
+      <p>Real feedback from real customers</p>
+      <div class="bar"></div>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>"Took my G-Wagon in and made it look brand new."</p>
+        <div class="review-author">— Lisa Pennington</div>
+        <div class="review-source">Issaquah, WA</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>"Got the stains out of my Civic's seats, they look brand new! Would Reccomend."</p>
+        <div class="review-author">— Jake Wagele</div>
+        <div class="review-source">Issaquah, WA</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>"Got even the grossest stains out my backseat. Would reccomend V and M."</p>
+        <div class="review-author">— Ethan Quinnett</div>
+        <div class="review-source">Issaquah, WA</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-header">
+      <h2>About Us</h2>
+      <p>The team behind V&amp;M Motor Care</p>
+      <div class="bar"></div>
+    </div>
+    <div class="about-content">
+      <p>V&amp;M Motor Care is an Issaquah-based detailing service built on one simple idea: you shouldn't have to overpay for quality work. We detail cars, boats, and RVs with the same care and precision as the high-end shops — at a price that actually makes sense.</p>
+      <p>Whether it's a daily driver that needs freshening up or a weekend toy that deserves the full treatment, we bring the tools, the products, and the attention to detail to make your vehicle look its absolute best.</p>
+      <p>V&amp;M Motor Care is run by two local high school students who are passionate about cars and that everyone should have a clean car.</p>
+      <div class="about-highlights">
+        <div class="about-stat">
+          <div class="stat-icon">&#x1F697;</div>
+          <h4>Cars, Boats &amp; RVs</h4>
+          <p>We handle it all</p>
+        </div>
+        <div class="about-stat">
+          <div class="stat-icon">&#x1F4B0;</div>
+          <h4>Honest Pricing</h4>
+          <p>No hidden fees or upsells</p>
+        </div>
+        <div class="about-stat">
+          <div class="stat-icon">&#x1F4CD;</div>
+          <h4>Issaquah Local</h4>
+          <p>Proudly serving the community</p>
+        </div>
+        <div class="about-stat">
+          <div class="stat-icon">&#x2728;</div>
+          <h4>Detail Obsessed</h4>
+          <p>Every surface, every time</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-header">
+      <h2>Get in Touch</h2>
+      <p>Ready to book or have questions? Reach out anytime.</p>
+      <div class="bar"></div>
+    </div>
+    <div class="contact-content">
+      <div class="contact-details">
+        <div class="contact-item">
+          <div class="icon">&#x1F4CD;</div>
+          <h4>Location</h4>
+          <p>Issaquah, WA</p>
+        </div>
+        <div class="contact-item">
+          <div class="icon">&#x1F4DE;</div>
+          <h4>Phone</h4>
+          <p><a href="tel:4254283689" style="color:var(--gray);text-decoration:none;">(425) 428-3689</a></p>
+        </div>
+        <div class="contact-item">
+          <div class="icon">&#x2709;&#xFE0F;</div>
+          <h4>Email</h4>
+          <p><a href="mailto:vandmmotorcare@gmail.com" style="color:var(--gray);text-decoration:none;">vandmmotorcare@gmail.com</a></p>
+        </div>
+        <div class="contact-item">
+          <div class="icon">&#x1F4F8;</div>
+          <h4>Instagram</h4>
+          <p><a href="https://instagram.com/vandm_motor_care" target="_blank" rel="noopener" style="color:var(--gray);text-decoration:none;">@vandm_motor_care</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <img src="vandm%20assets/logo/unnamed.jpg" alt="V&amp;M Motor Care" class="footer-logo"><br>
+    &copy; 2026 V&amp;M Motor Care. All rights reserved. &mdash; Issaquah, WA
+  </footer>
+
+</body>
+</html>
