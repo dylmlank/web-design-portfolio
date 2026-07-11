@@ -211,7 +211,8 @@
   /* ===== Work ===== */
   #work { background: var(--surface); max-width: none; }
   #work .inner { max-width: 1160px; margin: 0 auto; }
-  .work-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.75rem; }
+  .work-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 1.75rem; }
+  @media (max-width: 480px) { .work-grid { grid-template-columns: 1fr; } }
   .work-card {
     border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
     background: var(--bg); transition: transform 0.2s, box-shadow 0.2s;
@@ -459,7 +460,7 @@
     <span>Clear, upfront pricing</span>
     <span>No hidden fees</span>
   </div>
-  <div class="hero-mock" id="heroMock" role="button" tabindex="0" aria-label="Open live preview of V&amp;M Motor Care, a real site I built">
+  <div class="hero-mock" id="heroMock" role="button" tabindex="0" aria-label="Open live preview of V&amp;M Motor Care, a real site I built" data-site-src="work/vandm/index.html" data-site-label="V&amp;M Motor Care — live site preview">
     <div class="hm-bar">
       <span></span><span></span><span></span>
       <div class="hm-label">V&amp;M Motor Care — a real site I built · click to browse it</div>
@@ -520,7 +521,7 @@
       <p>Real work and example concepts for the types of local businesses I work with. Your site could be next on this list.</p>
     </div>
     <div class="work-grid">
-      <div class="work-card work-card-live reveal" id="vandmCard" role="button" tabindex="0" aria-label="Open live preview of V&amp;M Motor Care website">
+      <div class="work-card work-card-live reveal" role="button" tabindex="0" aria-label="Open live preview of V&amp;M Motor Care website" data-site-src="work/vandm/index.html" data-site-label="V&amp;M Motor Care — live site preview">
         <div class="work-preview">
           <img src="img/vandm-motor-care.jpg" alt="V&amp;M Motor Care website — premium auto detailing in Issaquah, WA" loading="lazy">
           <span class="real-badge">Real Project</span>
@@ -530,6 +531,18 @@
           <span class="tag">Auto Detailing · Issaquah, WA</span>
           <h3>V&amp;M Motor Care</h3>
           <p>Full site for a local detailing business — service packages, pricing, photo gallery, reviews, and contact. Designed and built by me. <strong class="click-hint">Click to browse the real site.</strong></p>
+        </div>
+      </div>
+      <div class="work-card work-card-live reveal" role="button" tabindex="0" aria-label="Open live preview of Sammamish Mobile Detailing website" data-site-src="work/sammamish/index.html" data-site-label="Sammamish Mobile Detailing — live site preview">
+        <div class="work-preview">
+          <img src="img/sammamish-detailing.jpg" alt="Sammamish Mobile Detailing website — premium mobile detailing, we come to you" loading="lazy">
+          <span class="real-badge">Real Project</span>
+          <div class="live-overlay"><span>▶&nbsp; View Live Site</span></div>
+        </div>
+        <div class="work-info">
+          <span class="tag">Mobile Detailing · Sammamish, WA</span>
+          <h3>Sammamish Mobile Detailing</h3>
+          <p>Elegant "we come to you" detailing site — services, how it works, service area, and booking. Designed and built by me. <strong class="click-hint">Click to browse the real site.</strong></p>
         </div>
       </div>
       <div class="work-card reveal">
@@ -708,13 +721,13 @@
   <div class="site-modal-frame">
     <div class="site-modal-bar">
       <div class="dots"><span></span><span></span><span></span></div>
-      <div class="modal-url">V&amp;M Motor Care — live site preview</div>
+      <div class="modal-url" id="modalUrlLabel">Live site preview</div>
       <div class="modal-actions">
-        <a href="work/vandm/index.html" target="_blank" rel="noopener" title="Open in new tab">⤢</a>
+        <a href="work/vandm/index.html" target="_blank" rel="noopener" title="Open in new tab" id="modalNewTab">⤢</a>
         <button id="modalClose" aria-label="Close preview">✕</button>
       </div>
     </div>
-    <iframe id="vandmFrame" title="V&amp;M Motor Care website live preview" loading="lazy"></iframe>
+    <iframe id="vandmFrame" title="Live website preview" loading="lazy"></iframe>
   </div>
 </div>
 
@@ -729,8 +742,10 @@
   });
   var vandmModal = document.getElementById('vandmModal');
   var vandmFrame = document.getElementById('vandmFrame');
-  function openVandm() {
-    if (!vandmFrame.src) vandmFrame.src = 'work/vandm/index.html';
+  function openSite(src, label) {
+    if (vandmFrame.getAttribute('src') !== src) vandmFrame.src = src;
+    document.getElementById('modalUrlLabel').textContent = label;
+    document.getElementById('modalNewTab').href = src;
     vandmModal.classList.add('open');
     vandmModal.setAttribute('aria-hidden', 'false');
     document.body.classList.add('modal-open');
@@ -740,10 +755,11 @@
     vandmModal.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('modal-open');
   }
-  [document.getElementById('vandmCard'), document.getElementById('heroMock')].forEach(function (el) {
-    el.addEventListener('click', openVandm);
+  document.querySelectorAll('[data-site-src]').forEach(function (el) {
+    function open() { openSite(el.getAttribute('data-site-src'), el.getAttribute('data-site-label')); }
+    el.addEventListener('click', open);
     el.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openVandm(); }
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
     });
   });
 
