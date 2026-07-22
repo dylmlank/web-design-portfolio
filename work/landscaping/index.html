@@ -91,6 +91,13 @@
   footer .brand { color: var(--cream); font-size: 1.6rem; justify-content: center; margin-bottom: 0.8rem; }
   footer p { opacity: 0.75; font-size: 0.9rem; }
   footer small { display: block; opacity: 0.55; margin-top: 0.8rem; }
+  .reviews { background: var(--paper); }
+  .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.4rem; max-width: 1100px; margin: 0 auto; }
+  .review { background: var(--cream); border: 1px solid var(--border); border-radius: 16px; padding: 1.7rem; position: relative; }
+  .review .stars { color: #e0a800; font-size: 1.1rem; letter-spacing: 2px; margin-bottom: 0.7rem; }
+  .review p { color: var(--ink); font-size: 1rem; margin-bottom: 1rem; font-style: italic; }
+  .review .who { color: var(--muted); font-size: 0.88rem; font-weight: 600; }
+  .ex-tag { position: absolute; top: 14px; right: 14px; background: var(--forest); color: var(--lime); font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.25rem 0.6rem; border-radius: 100px; }
   .demo-flag {
     position: fixed; bottom: 14px; left: 14px; z-index: 9999;
     background: rgba(17,24,39,0.94); color: #fff; font-family: "Inter", system-ui, sans-serif;
@@ -107,8 +114,8 @@
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
     <li><a href="#how">How It Works</a></li>
-    <li><a href="#quote">Reviews</a></li>
-    <li class="keep"><a href="#quote" class="nav-phone">(425) 555-0188</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li class="keep"><a href="#quote" class="nav-phone">Free Estimate</a></li>
   </ul>
 </nav>
 
@@ -160,11 +167,24 @@
   </div>
 </section>
 
+<section class="reviews" id="reviews">
+  <div class="sec-head">
+    <div class="kick">REVIEWS</div>
+    <h2>What homeowners say</h2>
+    <p><strong>Example reviews only</strong> — placeholder text to show the layout, not real customer testimonials.</p>
+  </div>
+  <div class="reviews-grid">
+    <div class="review"><span class="ex-tag">Example</span><div class="stars">★★★★★</div><p>"This is an example review used to show how customer testimonials would appear on the finished site."</p><div class="who">— Sample Customer</div></div>
+    <div class="review"><span class="ex-tag">Example</span><div class="stars">★★★★★</div><p>"Placeholder testimonial. Real reviews from your customers would show up here once your site is live."</p><div class="who">— Example Reviewer</div></div>
+    <div class="review"><span class="ex-tag">Example</span><div class="stars">★★★★★</div><p>"Another sample quote for the review section. This company is not real — it's a design demo."</p><div class="who">— Demo Homeowner</div></div>
+  </div>
+</section>
+
 <section id="quote">
   <div class="quote-wrap">
     <div>
       <h2>Get your free estimate</h2>
-      <p>Fill this out and we'll get back to you within the day with a no-obligation quote. Or just call — we pick up.</p>
+      <p>Fill this out and we'll get back to you within the day with a no-obligation quote. <em>(Demo form — it doesn't send anywhere.)</em></p>
     </div>
     <form onsubmit="event.preventDefault(); this.innerHTML='<p style=&quot;color:#fff;font-weight:600&quot;>Thanks! We\'ll be in touch shortly. ✓</p>';">
       <input type="text" placeholder="Your name" required>
@@ -183,7 +203,7 @@
 
 <footer>
   <div class="brand"><span class="leaf">🌿</span> Evergreen &amp; Co.</div>
-  <p>Serving Sammamish, Issaquah, Bellevue &amp; the greater Eastside · (425) 555-0188</p>
+  <p>Serving Sammamish, Issaquah, Bellevue &amp; the greater Eastside</p>
   <small>© 2026 Evergreen &amp; Co. Landscaping · A concept site by Dylan Lankford</small>
 </footer>
 </body>

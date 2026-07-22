@@ -113,6 +113,12 @@
   footer .socials a { text-decoration: none; opacity: 0.8; font-weight: 500; }
   footer .socials a:hover { opacity: 1; color: var(--terracotta); }
   footer small { opacity: 0.6; display: block; margin-top: 1rem; }
+  .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; max-width: 1000px; margin: 0 auto; }
+  .review { background: var(--paper); border: 1px solid var(--border); border-radius: 18px; padding: 1.8rem; position: relative; }
+  .review .stars { color: var(--terracotta); font-size: 1.1rem; letter-spacing: 2px; margin-bottom: 0.7rem; }
+  .review p { font-family: "Fraunces", serif; font-size: 1.05rem; color: var(--espresso); margin-bottom: 1rem; }
+  .review .who { color: var(--muted); font-size: 0.88rem; font-weight: 500; }
+  .ex-tag { position: absolute; top: 14px; right: 14px; background: var(--espresso); color: var(--cream); font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.25rem 0.6rem; border-radius: 100px; }
   .demo-flag {
     position: fixed; bottom: 14px; left: 14px; z-index: 9999;
     background: rgba(17,24,39,0.94); color: #fff; font-family: "Inter", system-ui, sans-serif;
@@ -129,6 +135,7 @@
   <ul class="nav-links">
     <li><a href="#menu">Menu</a></li>
     <li><a href="#values">Our Story</a></li>
+    <li><a href="#reviews">Reviews</a></li>
     <li><a href="#visit">Visit</a></li>
     <li><a href="#visit" class="nav-order">Order Ahead</a></li>
   </ul>
@@ -195,12 +202,25 @@
   </div>
 </section>
 
+<section id="reviews">
+  <div class="sec-head">
+    <div class="eyebrow">Kind Words</div>
+    <h2>What folks say</h2>
+    <p><strong>Example reviews only</strong> — placeholder text shown to demonstrate the layout, not real customer testimonials.</p>
+  </div>
+  <div class="reviews-grid">
+    <div class="review"><span class="ex-tag">Example</span><div class="stars">★★★★★</div><p>"This is an example review used to show how customer testimonials would look on the finished site."</p><div class="who">— Sample Customer</div></div>
+    <div class="review"><span class="ex-tag">Example</span><div class="stars">★★★★★</div><p>"Placeholder testimonial text. Real reviews from your customers would appear here once your site is live."</p><div class="who">— Example Reviewer</div></div>
+    <div class="review"><span class="ex-tag">Example</span><div class="stars">★★★★★</div><p>"Another sample quote demonstrating the review section. This business is not real — it's a design demo."</p><div class="who">— Demo Guest</div></div>
+  </div>
+</section>
+
 <section id="visit">
   <div class="visit">
     <div class="visit-info">
       <h2>Come say hi</h2>
       <p>Tucked on the corner of 3rd &amp; Maple, right by the park. Street parking out front, patio open when the sun's out.</p>
-      <p class="addr">312 Maple Street<br>Your Town, WA 98000</p>
+      <p class="addr">[Your street address]<br>[Your town], WA</p>
       <div class="map"><div class="pin">📍</div></div>
     </div>
     <div class="hours-card">
@@ -217,7 +237,7 @@
 <footer>
   <a href="#" class="logo">Hearth &amp; Crumb</a>
   <div class="socials">
-    <a href="#">Instagram</a><a href="#">Facebook</a><a href="#">(425) 555-0142</a>
+    <a href="#">Instagram</a><a href="#">Facebook</a>
   </div>
   <small>© 2026 Hearth &amp; Crumb Bakery · A concept site by Dylan Lankford</small>
 </footer>
