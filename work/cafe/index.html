@@ -113,9 +113,17 @@
   footer .socials a { text-decoration: none; opacity: 0.8; font-weight: 500; }
   footer .socials a:hover { opacity: 1; color: var(--terracotta); }
   footer small { opacity: 0.6; display: block; margin-top: 1rem; }
+  .demo-flag {
+    position: fixed; bottom: 14px; left: 14px; z-index: 9999;
+    background: rgba(17,24,39,0.94); color: #fff; font-family: "Inter", system-ui, sans-serif;
+    font-size: 12px; font-weight: 600; padding: 8px 14px; border-radius: 100px; text-transform: none; letter-spacing: 0;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.18);
+    max-width: calc(100vw - 28px);
+  }
 </style>
 </head>
 <body>
+<div class="demo-flag">⚠️ Example site — a design demo by Dylan Lankford. Hearth &amp; Crumb is not a real business.</div>
 <nav>
   <a href="#" class="logo">Hearth <span>&amp;</span> Crumb</a>
   <ul class="nav-links">

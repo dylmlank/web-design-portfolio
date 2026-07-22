@@ -91,9 +91,17 @@
   footer .brand { color: var(--cream); font-size: 1.6rem; justify-content: center; margin-bottom: 0.8rem; }
   footer p { opacity: 0.75; font-size: 0.9rem; }
   footer small { display: block; opacity: 0.55; margin-top: 0.8rem; }
+  .demo-flag {
+    position: fixed; bottom: 14px; left: 14px; z-index: 9999;
+    background: rgba(17,24,39,0.94); color: #fff; font-family: "Inter", system-ui, sans-serif;
+    font-size: 12px; font-weight: 600; padding: 8px 14px; border-radius: 100px; text-transform: none; letter-spacing: 0;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.18);
+    max-width: calc(100vw - 28px);
+  }
 </style>
 </head>
 <body>
+<div class="demo-flag">⚠️ Example site — a design demo by Dylan Lankford. Evergreen &amp; Co. is not a real business.</div>
 <nav>
   <a href="#" class="brand"><span class="leaf">🌿</span> Evergreen &amp; Co.</a>
   <ul class="nav-links">
