@@ -325,6 +325,43 @@
   .about-box p { color: var(--text); font-size: 1.02rem; }
   .about-box .why { margin-top: 0.9rem; color: var(--muted); font-size: 0.94rem; }
 
+  /* ===== Testimonials ===== */
+  #testimonials { background: var(--surface); max-width: none; }
+  #testimonials .inner { max-width: 1000px; margin: 0 auto; }
+  .tst-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.75rem; }
+  .tst-card {
+    background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 2rem; box-shadow: var(--shadow); display: flex; flex-direction: column;
+  }
+  .tst-stars { color: #f5a623; font-size: 1.1rem; letter-spacing: 2px; margin-bottom: 0.9rem; }
+  .tst-quote { font-size: 1.08rem; line-height: 1.7; color: var(--text); flex: 1; }
+  .tst-quote::before { content: "\201C"; color: var(--blue); font-weight: 800; }
+  .tst-quote::after { content: "\201D"; color: var(--blue); font-weight: 800; }
+  .tst-who { display: flex; align-items: center; gap: 0.85rem; margin-top: 1.5rem; }
+  .tst-avatar {
+    width: 46px; height: 46px; border-radius: 50%; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--blue), var(--navy));
+    color: #fff; font-weight: 800; font-size: 1.05rem; display: flex; align-items: center; justify-content: center;
+  }
+  .tst-name { font-weight: 700; color: var(--heading); font-size: 0.98rem; }
+  .tst-role { color: var(--muted); font-size: 0.85rem; }
+
+  /* ===== Comparison ===== */
+  .compare-wrap { max-width: 940px; margin: 0 auto; overflow-x: auto; }
+  .compare { width: 100%; border-collapse: separate; border-spacing: 0; min-width: 620px; }
+  .compare th, .compare td { padding: 1rem 1.15rem; text-align: left; font-size: 0.95rem; }
+  .compare thead th { font-family: var(--font-display); font-weight: 700; color: var(--muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  .compare thead th.me { color: var(--blue); }
+  .compare tbody td { border-top: 1px solid var(--border); color: var(--text); }
+  .compare tbody td:first-child { font-weight: 600; color: var(--heading); }
+  .compare .col-me { background: rgba(37,99,235,0.06); }
+  .compare thead th.me, .compare td.col-me { border-left: 2px solid var(--blue); border-right: 2px solid var(--blue); }
+  .compare thead th.me { border-top: 2px solid var(--blue); border-radius: 10px 10px 0 0; }
+  .compare tbody tr:last-child td.col-me { border-bottom: 2px solid var(--blue); border-radius: 0 0 10px 10px; }
+  .compare .yes { color: var(--green); font-weight: 700; }
+  .compare .no { color: #cbd5e1; }
+  [data-theme="dark"] .compare .no { color: #45566f; }
+
   /* ===== FAQ ===== */
   .faq-list { max-width: 720px; margin: 0 auto; }
   .faq-list details {
@@ -397,6 +434,7 @@
   <ul class="nav-links" id="navLinks">
     <li><a href="#services">Services</a></li>
     <li><a href="#work">Work</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#process">Process</a></li>
     <li><a href="#about">About</a></li>
@@ -528,6 +566,40 @@
   </div>
 </section>
 
+<section id="testimonials">
+  <div class="inner">
+    <div class="section-head reveal">
+      <div class="kicker">Testimonials</div>
+      <h2>What my clients say</h2>
+      <p>Real feedback from the local businesses I've built sites for.</p>
+    </div>
+    <div class="tst-grid">
+      <div class="tst-card reveal">
+        <div class="tst-stars">★★★★★</div>
+        <p class="tst-quote">Our new site has helped us attract more business and answer customers' questions before they even call. It's made the whole experience smoother and our day-to-day a lot more productive.</p>
+        <div class="tst-who">
+          <div class="tst-avatar">VM</div>
+          <div>
+            <div class="tst-name">V&amp;M Motor Care</div>
+            <div class="tst-role">Auto Detailing · Issaquah, WA</div>
+          </div>
+        </div>
+      </div>
+      <div class="tst-card reveal">
+        <div class="tst-stars">★★★★★</div>
+        <p class="tst-quote">Since launching, the website has brought in new customers and handles the questions we used to answer over and over. Everything runs better — it's boosted both our customer experience and our productivity.</p>
+        <div class="tst-who">
+          <div class="tst-avatar">SM</div>
+          <div>
+            <div class="tst-name">Sammamish Mobile Detailing</div>
+            <div class="tst-role">Mobile Detailing · Sammamish, WA</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="pricing">
   <div class="section-head reveal">
     <div class="kicker">Pricing</div>
@@ -579,6 +651,64 @@
     </div>
   </div>
   <p class="pricing-note">Need ongoing help? <strong>Care Plan — $49/month:</strong> hosting management, content updates, backups, and priority support.</p>
+</section>
+
+<section id="compare">
+  <div class="section-head reveal">
+    <div class="kicker">Why Me</div>
+    <h2>The right fit for a local business</h2>
+    <p>You've got options. Here's how working with me compares to the usual alternatives.</p>
+  </div>
+  <div class="compare-wrap reveal">
+    <table class="compare">
+      <thead>
+        <tr>
+          <th></th>
+          <th>DIY (Wix / Squarespace)</th>
+          <th class="me">Working with me</th>
+          <th>Full agency</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Your time spent</td>
+          <td>Hours of your own work</td>
+          <td class="col-me"><span class="yes">Done for you</span></td>
+          <td>Low</td>
+        </tr>
+        <tr>
+          <td>Typical cost</td>
+          <td>$15–40/mo forever</td>
+          <td class="col-me"><span class="yes">$799–$1,999 one-time</span></td>
+          <td>$5,000–$15,000+</td>
+        </tr>
+        <tr>
+          <td>Custom design</td>
+          <td>Templated</td>
+          <td class="col-me"><span class="yes">Built for your brand</span></td>
+          <td>Yes</td>
+        </tr>
+        <tr>
+          <td>Work directly with your designer</td>
+          <td class="no">—</td>
+          <td class="col-me"><span class="yes">Always</span></td>
+          <td class="no">Account managers</td>
+        </tr>
+        <tr>
+          <td>Local &amp; in person</td>
+          <td class="no">—</td>
+          <td class="col-me"><span class="yes">Right here on the Eastside</span></td>
+          <td class="no">Usually remote</td>
+        </tr>
+        <tr>
+          <td>Turnaround</td>
+          <td>Whenever you finish it</td>
+          <td class="col-me"><span class="yes">1–2 weeks</span></td>
+          <td>1–3 months</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </section>
 
 <section id="process">
