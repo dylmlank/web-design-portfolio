@@ -158,30 +158,6 @@
     margin-top: 3rem; font-size: 0.92rem; color: rgba(255,255,255,0.85); font-weight: 600;
   }
   .hero-points span::before { content: "✓  "; color: #6ee7b7; font-weight: 800; }
-  .hero-mock {
-    max-width: 860px; margin: 3.5rem auto -9rem; cursor: pointer;
-    border-radius: 14px; overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.15);
-    box-shadow: 0 30px 80px rgba(0,0,0,0.45);
-    transform: perspective(1400px) rotateX(5deg);
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
-  }
-  .hero-mock:hover, .hero-mock:focus-visible {
-    transform: perspective(1400px) rotateX(0deg) translateY(-4px);
-    box-shadow: 0 36px 90px rgba(0,0,0,0.55);
-  }
-  .hm-bar { display: flex; align-items: center; gap: 6px; background: #1e293b; padding: 0.55rem 0.9rem; }
-  .hm-bar span { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-  .hm-bar span:nth-child(1) { background: #ef4444; }
-  .hm-bar span:nth-child(2) { background: #f59e0b; }
-  .hm-bar span:nth-child(3) { background: #22c55e; }
-  .hm-label {
-    flex: 1; text-align: center; color: #94a3b8; font-size: 0.78rem; font-weight: 600;
-    background: #0f172a; border-radius: 6px; padding: 0.25rem 0.75rem; margin-left: 6px;
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  }
-  .hero-mock img { display: block; width: 100%; }
-  #services { padding-top: 14rem; }
 
   /* ===== Sections ===== */
   section { padding: 5rem 5vw; max-width: 1160px; margin: 0 auto; }
@@ -394,7 +370,6 @@
     html { scroll-behavior: auto; }
     .hero-blob { animation: none; }
     .reveal { transition: none; opacity: 1; transform: none; }
-    .hero-mock { transform: none; }
   }
 
   /* ===== Mobile ===== */
@@ -410,9 +385,6 @@
     .about-box { flex-direction: column; text-align: center; padding: 2rem 1.5rem; }
     section { padding: 3.5rem 5vw; }
     .hero { padding: 3.5rem 5vw 2rem; }
-    .hero-mock { margin: 2.5rem auto -4.5rem; transform: none; }
-    .hero-mock:hover, .hero-mock:focus-visible { transform: translateY(-3px); }
-    #services { padding-top: 8rem; }
     .price-card.featured { transform: none; }
     .price-card.featured:hover { transform: translateY(-4px); }
   }
@@ -449,13 +421,6 @@
     <span>Fast turnaround</span>
     <span>Clear, upfront pricing</span>
     <span>No hidden fees</span>
-  </div>
-  <div class="hero-mock" id="heroMock" role="button" tabindex="0" aria-label="Open live preview of V&amp;M Motor Care, a real site I built" data-site-src="work/vandm/index.html" data-site-label="V&amp;M Motor Care — live site preview">
-    <div class="hm-bar">
-      <span></span><span></span><span></span>
-      <div class="hm-label">V&amp;M Motor Care — a real site I built · click to browse it</div>
-    </div>
-    <img src="img/vandm-motor-care.jpg" alt="Preview of the V&amp;M Motor Care website">
   </div>
   <div class="hero-bg">
     <div class="hero-blob b1"></div>
