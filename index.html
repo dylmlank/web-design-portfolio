@@ -223,12 +223,14 @@
     display: flex; align-items: flex-end; justify-content: center;
   }
   .work-preview img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
-  .real-badge {
+  .real-badge, .example-badge {
     position: absolute; top: 12px; right: 12px;
-    background: var(--green); color: #fff; font-size: 0.7rem; font-weight: 700;
+    color: #fff; font-size: 0.7rem; font-weight: 700;
     text-transform: uppercase; letter-spacing: 0.07em;
     padding: 0.3rem 0.75rem; border-radius: 100px;
   }
+  .real-badge { background: var(--green); }
+  .example-badge { background: #b45309; }
   .work-card-live { cursor: pointer; }
   .work-card-live:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
   .live-overlay {
@@ -275,18 +277,6 @@
   .modal-actions a:hover, .modal-actions button:hover { background: #334155; color: #fff; }
   .site-modal iframe { flex: 1; width: 100%; border: 0; }
   body.modal-open { overflow: hidden; }
-  .mock {
-    width: 82%; height: 82%; background: #fff; border-radius: 8px 8px 0 0;
-    box-shadow: 0 -4px 24px rgba(0,0,0,0.18); padding: 10px 12px;
-  }
-  .mock .bar { height: 8px; border-radius: 4px; background: #e2e8f0; margin-bottom: 8px; }
-  .mock .bar.w60 { width: 60%; }
-  .mock .bar.w40 { width: 40%; }
-  .mock .bar.accent { background: currentColor; opacity: 0.85; }
-  .mock .blocks { display: flex; gap: 8px; margin-top: 10px; }
-  .mock .block { flex: 1; height: 42px; border-radius: 6px; background: #eef2f7; }
-  .wp-cafe { background: linear-gradient(135deg, #b45309, #92400e); color: #b45309; }
-  .wp-salon { background: linear-gradient(135deg, #be185d, #9d174d); color: #be185d; }
   .work-info { padding: 1.25rem 1.4rem 1.5rem; background: var(--surface); }
   .work-info .tag { font-size: 0.75rem; font-weight: 700; color: var(--blue); text-transform: uppercase; letter-spacing: 0.08em; }
   .work-info h3 { font-size: 1.08rem; font-weight: 700; color: var(--heading); margin: 0.25rem 0 0.4rem; }
@@ -518,7 +508,7 @@
     <div class="section-head reveal">
       <div class="kicker">Sample Work</div>
       <h2>The kind of sites I build</h2>
-      <p>Real work and example concepts for the types of local businesses I work with. Your site could be next on this list.</p>
+      <p>Real client work and example concepts — click any card to browse the full, live site. Your business could be next on this list.</p>
     </div>
     <div class="work-grid">
       <div class="work-card work-card-live reveal" role="button" tabindex="0" aria-label="Open live preview of V&amp;M Motor Care website" data-site-src="work/vandm/index.html" data-site-label="V&amp;M Motor Care — live site preview">
@@ -545,26 +535,28 @@
           <p>Elegant "we come to you" detailing site — services, how it works, service area, and booking. Designed and built by me. <strong class="click-hint">Click to browse the real site.</strong></p>
         </div>
       </div>
-      <div class="work-card reveal">
-        <div class="work-preview wp-cafe"><div class="mock">
-          <div class="bar accent w40"></div><div class="bar w60"></div>
-          <div class="blocks"><div class="block"></div><div class="block"></div><div class="block"></div></div>
-        </div></div>
+      <div class="work-card work-card-live reveal" role="button" tabindex="0" aria-label="Open live preview of the Hearth & Crumb café example site" data-site-src="work/cafe/index.html" data-site-label="Hearth &amp; Crumb — café &amp; bakery example site">
+        <div class="work-preview">
+          <img src="img/cafe-example.jpg" alt="Hearth & Crumb café and bakery example website" loading="lazy">
+          <span class="example-badge">Example Site</span>
+          <div class="live-overlay"><span>▶&nbsp; View Live Site</span></div>
+        </div>
         <div class="work-info">
-          <span class="tag">Restaurant / Café · Concept</span>
-          <h3>Café &amp; Bakery Site</h3>
-          <p>Menu, hours, location map, and online ordering links — everything a hungry customer needs in one tap.</p>
+          <span class="tag">Café &amp; Bakery · Concept</span>
+          <h3>Hearth &amp; Crumb</h3>
+          <p>A cozy neighborhood café concept — menu, story, hours, and location map. Built as a demo. <strong class="click-hint">Click to browse it.</strong></p>
         </div>
       </div>
-      <div class="work-card reveal">
-        <div class="work-preview wp-salon"><div class="mock">
-          <div class="bar accent w40"></div><div class="bar w60"></div>
-          <div class="blocks"><div class="block"></div><div class="block"></div><div class="block"></div></div>
-        </div></div>
+      <div class="work-card work-card-live reveal" role="button" tabindex="0" aria-label="Open live preview of the Evergreen & Co. landscaping example site" data-site-src="work/landscaping/index.html" data-site-label="Evergreen &amp; Co. — landscaping example site">
+        <div class="work-preview">
+          <img src="img/landscaping-example.jpg" alt="Evergreen & Co. landscaping and lawn care example website" loading="lazy">
+          <span class="example-badge">Example Site</span>
+          <div class="live-overlay"><span>▶&nbsp; View Live Site</span></div>
+        </div>
         <div class="work-info">
-          <span class="tag">Salon / Boutique · Concept</span>
-          <h3>Salon &amp; Booking Site</h3>
-          <p>Stylish pages that match your brand, with pricing, staff bios, and online booking built in.</p>
+          <span class="tag">Landscaping / Lawn Care · Concept</span>
+          <h3>Evergreen &amp; Co.</h3>
+          <p>A bold landscaping concept — services, stats, how-it-works, and a working quote form. Built as a demo. <strong class="click-hint">Click to browse it.</strong></p>
         </div>
       </div>
     </div>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evergreen &amp; Co. — Landscaping &amp; Lawn Care</title>
+<meta name="description" content="Evergreen & Co. — full-service landscaping, lawn care, and yard maintenance. Free estimates, licensed and insured.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --forest: #14331f;
+    --green: #2f7d43;
+    --green-lt: #4ba05e;
+    --lime: #a3d977;
+    --bark: #6b4f3a;
+    --cream: #f5f7f0;
+    --paper: #ffffff;
+    --ink: #1a2b20;
+    --muted: #5f6f63;
+    --border: #dfe6d6;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: "Inter", sans-serif; background: var(--cream); color: var(--ink); line-height: 1.6; }
+  h1, h2, h3, .brand, .display { font-family: "Barlow Condensed", sans-serif; text-transform: uppercase; letter-spacing: 0.01em; }
+  a { color: inherit; }
+  img { max-width: 100%; display: block; }
+
+  nav { position: sticky; top: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; padding: 0.9rem 6vw; background: var(--forest); color: var(--cream); }
+  .brand { font-weight: 800; font-size: 1.5rem; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+  .brand .leaf { color: var(--lime); }
+  .nav-links { display: flex; gap: 1.8rem; list-style: none; align-items: center; }
+  .nav-links a { text-decoration: none; font-weight: 600; font-size: 0.92rem; opacity: 0.85; transition: opacity 0.2s; }
+  .nav-links a:hover { opacity: 1; }
+  .nav-phone { background: var(--lime); color: var(--forest) !important; padding: 0.5rem 1.1rem; border-radius: 8px; font-weight: 700; opacity: 1 !important; }
+  @media (max-width: 760px) { .nav-links li:not(.keep) { display: none; } }
+
+  .hero { position: relative; padding: 5.5rem 6vw 6rem; color: var(--cream); overflow: hidden;
+    background: radial-gradient(ellipse 70% 60% at 80% 10%, rgba(163,217,119,0.25), transparent), linear-gradient(160deg, var(--forest), var(--green)); }
+  .hero::after { content: ""; position: absolute; bottom: -1px; left: 0; right: 0; height: 60px; background: var(--cream);
+    clip-path: polygon(0 100%, 0 40%, 8% 55%, 16% 35%, 26% 60%, 36% 38%, 47% 58%, 58% 36%, 68% 57%, 78% 38%, 88% 56%, 100% 40%, 100% 100%); }
+  .hero-inner { position: relative; z-index: 2; max-width: 720px; }
+  .hero .badge { display: inline-block; background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.25); padding: 0.4rem 1rem; border-radius: 100px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; margin-bottom: 1.3rem; }
+  .hero h1 { font-size: clamp(2.8rem, 7vw, 5.5rem); font-weight: 800; line-height: 0.95; margin-bottom: 1.2rem; }
+  .hero h1 span { color: var(--lime); }
+  .hero p { font-size: 1.15rem; max-width: 500px; opacity: 0.92; margin-bottom: 2rem; }
+  .btn { display: inline-block; text-decoration: none; font-weight: 700; padding: 0.9rem 1.8rem; border-radius: 10px; transition: transform 0.15s, background 0.2s; font-size: 1rem; }
+  .btn-lime { background: var(--lime); color: var(--forest); }
+  .btn-lime:hover { background: #b6e68d; transform: translateY(-2px); }
+  .btn-outline { border: 2px solid rgba(255,255,255,0.5); color: #fff; margin-left: 0.6rem; }
+  .btn-outline:hover { background: rgba(255,255,255,0.12); }
+  .trust { display: flex; gap: 2rem; margin-top: 2.5rem; flex-wrap: wrap; font-weight: 600; font-size: 0.9rem; }
+  .trust span::before { content: "✓ "; color: var(--lime); font-weight: 800; }
+
+  section { padding: 5rem 6vw; }
+  .sec-head { max-width: 620px; margin: 0 auto 3rem; text-align: center; }
+  .sec-head .kick { color: var(--green); font-weight: 700; letter-spacing: 0.12em; font-size: 0.8rem; }
+  .sec-head h2 { font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 800; color: var(--forest); margin: 0.3rem 0; }
+  .sec-head p { color: var(--muted); }
+
+  .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.4rem; max-width: 1100px; margin: 0 auto; }
+  .svc { background: var(--paper); border: 1px solid var(--border); border-radius: 16px; padding: 1.8rem; transition: transform 0.2s, box-shadow 0.2s; }
+  .svc:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(20,51,31,0.12); }
+  .svc .ico { width: 52px; height: 52px; border-radius: 12px; background: linear-gradient(135deg, var(--green), var(--green-lt)); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 1.1rem; }
+  .svc h3 { font-size: 1.35rem; font-weight: 700; color: var(--forest); margin-bottom: 0.4rem; }
+  .svc p { color: var(--muted); font-size: 0.94rem; }
+
+  .band { background: var(--forest); color: var(--cream); }
+  .band-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 2rem; max-width: 900px; margin: 0 auto; text-align: center; }
+  .stat .num { font-family: "Barlow Condensed", sans-serif; font-size: 3.2rem; font-weight: 800; color: var(--lime); line-height: 1; }
+  .stat .lbl { font-size: 0.92rem; opacity: 0.85; margin-top: 0.3rem; }
+
+  .steps { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+  .step { position: relative; padding: 1.5rem; }
+  .step .n { font-family: "Barlow Condensed", sans-serif; font-size: 3rem; font-weight: 800; color: var(--border); line-height: 1; }
+  .step h3 { font-size: 1.3rem; font-weight: 700; color: var(--forest); margin: 0.3rem 0 0.4rem; }
+  .step p { color: var(--muted); font-size: 0.94rem; }
+
+  .quote-wrap { background: linear-gradient(160deg, var(--green), var(--forest)); border-radius: 24px; max-width: 1000px; margin: 0 auto; padding: 3rem; color: var(--cream); display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center; }
+  .quote-wrap h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; margin-bottom: 0.8rem; }
+  .quote-wrap p { opacity: 0.9; }
+  form { display: grid; gap: 0.8rem; }
+  form input, form select { padding: 0.85rem 1rem; border-radius: 10px; border: none; font-family: inherit; font-size: 0.95rem; }
+  form button { background: var(--lime); color: var(--forest); border: none; padding: 0.9rem; border-radius: 10px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: background 0.2s; }
+  form button:hover { background: #b6e68d; }
+  @media (max-width: 760px) { .quote-wrap { grid-template-columns: 1fr; padding: 2rem; } }
+
+  footer { background: #0e2416; color: var(--cream); padding: 2.5rem 6vw; text-align: center; }
+  footer .brand { color: var(--cream); font-size: 1.6rem; justify-content: center; margin-bottom: 0.8rem; }
+  footer p { opacity: 0.75; font-size: 0.9rem; }
+  footer small { display: block; opacity: 0.55; margin-top: 0.8rem; }
+</style>
+</head>
+<body>
+<nav>
+  <a href="#" class="brand"><span class="leaf">🌿</span> Evergreen &amp; Co.</a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#quote">Reviews</a></li>
+    <li class="keep"><a href="#quote" class="nav-phone">(425) 555-0188</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <span class="badge">Licensed &amp; insured · Free estimates</span>
+    <h1>A yard you're<br><span>proud of</span> —<br>without the work.</h1>
+    <p>Full-service landscaping and lawn care for homes across the Eastside. Weekly mowing, seasonal cleanups, and complete yard makeovers.</p>
+    <a href="#quote" class="btn btn-lime">Get a Free Estimate</a>
+    <a href="#services" class="btn btn-outline">Our Services</a>
+    <div class="trust"><span>5-star rated</span><span>Same-week start</span><span>No contracts</span></div>
+  </div>
+</header>
+
+<section id="services">
+  <div class="sec-head">
+    <div class="kick">WHAT WE DO</div>
+    <h2>Everything outside, handled</h2>
+    <p>From a standing weekly mow to a full landscape redesign — one crew, one call.</p>
+  </div>
+  <div class="services">
+    <div class="svc"><div class="ico">🌱</div><h3>Lawn Care</h3><p>Weekly or bi-weekly mowing, edging, trimming, and blowing. Crisp lines every time.</p></div>
+    <div class="svc"><div class="ico">🍂</div><h3>Seasonal Cleanup</h3><p>Spring and fall leaf removal, bed refresh, mulch, and gutter-line tidying.</p></div>
+    <div class="svc"><div class="ico">🌳</div><h3>Trees &amp; Shrubs</h3><p>Pruning, shaping, hedge trimming, and safe removal of small trees.</p></div>
+    <div class="svc"><div class="ico">🏡</div><h3>Landscape Design</h3><p>New beds, sod, stone paths, and planting plans that fit your home and budget.</p></div>
+    <div class="svc"><div class="ico">💧</div><h3>Irrigation</h3><p>Sprinkler installs, tune-ups, and winterization so nothing dries out or freezes.</p></div>
+    <div class="svc"><div class="ico">🧹</div><h3>Hardscape Care</h3><p>Pressure washing driveways, patios, and walkways until they look new.</p></div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="band-grid">
+    <div class="stat"><div class="num">600+</div><div class="lbl">Yards maintained</div></div>
+    <div class="stat"><div class="num">12yr</div><div class="lbl">Serving the Eastside</div></div>
+    <div class="stat"><div class="num">4.9★</div><div class="lbl">Average review</div></div>
+    <div class="stat"><div class="num">100%</div><div class="lbl">Satisfaction guarantee</div></div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="sec-head">
+    <div class="kick">HOW IT WORKS</div>
+    <h2>Three steps to a better yard</h2>
+  </div>
+  <div class="steps">
+    <div class="step"><div class="n">01</div><h3>Free Estimate</h3><p>Tell us about your yard. We visit, measure, and send a clear quote — usually same day.</p></div>
+    <div class="step"><div class="n">02</div><h3>We Get to Work</h3><p>Our crew shows up on schedule with everything needed. You don't lift a finger.</p></div>
+    <div class="step"><div class="n">03</div><h3>Enjoy the Green</h3><p>Come home to a yard that's done right. Keep us weekly or call when you need us.</p></div>
+  </div>
+</section>
+
+<section id="quote">
+  <div class="quote-wrap">
+    <div>
+      <h2>Get your free estimate</h2>
+      <p>Fill this out and we'll get back to you within the day with a no-obligation quote. Or just call — we pick up.</p>
+    </div>
+    <form onsubmit="event.preventDefault(); this.innerHTML='<p style=&quot;color:#fff;font-weight:600&quot;>Thanks! We\'ll be in touch shortly. ✓</p>';">
+      <input type="text" placeholder="Your name" required>
+      <input type="tel" placeholder="Phone number" required>
+      <select required>
+        <option value="" disabled selected>What do you need?</option>
+        <option>Weekly lawn care</option>
+        <option>Seasonal cleanup</option>
+        <option>Landscape design</option>
+        <option>Something else</option>
+      </select>
+      <button type="submit">Request My Estimate</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="brand"><span class="leaf">🌿</span> Evergreen &amp; Co.</div>
+  <p>Serving Sammamish, Issaquah, Bellevue &amp; the greater Eastside · (425) 555-0188</p>
+  <small>© 2026 Evergreen &amp; Co. Landscaping · A concept site by Dylan Lankford</small>
+</footer>
+</body>
+</html>
