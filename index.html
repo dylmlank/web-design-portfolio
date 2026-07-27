@@ -480,6 +480,35 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   /* Magnetic buttons */
   .btn, .nav-cta { will-change: transform; }
 
+  /* #8 Self-drawing SVG underline */
+  .draw-wrap { position: relative; display: inline-block; }
+  .draw-underline { position: absolute; left: -4%; bottom: -14px; width: 108%; height: 16px;
+    overflow: visible; pointer-events: none; }
+  .draw-underline path { fill: none; stroke: var(--blue); stroke-width: 4;
+    stroke-linecap: round; }
+
+  /* #18 Animated gradient on the hero accent */
+  .js-anim .hero h1 .accent { background-size: 220% 100%; }
+
+  /* #12 Service icon micro-interaction */
+  .service-icon { transition: transform .35s cubic-bezier(.34,1.56,.64,1), background .3s; }
+  .service-card:hover .service-icon { transform: translateY(-4px) rotate(-7deg) scale(1.09); }
+
+  /* #24 Loading skeleton for the live-site modal */
+  .frame-loader { position: absolute; inset: 42px 0 0 0; background: var(--surface);
+    display: flex; flex-direction: column; gap: 14px; padding: 26px; z-index: 2; }
+  .frame-loader.hidden { display: none; }
+  .sk { border-radius: 8px; background: linear-gradient(90deg,
+      rgba(148,163,184,.16) 25%, rgba(148,163,184,.34) 37%, rgba(148,163,184,.16) 63%);
+    background-size: 400% 100%; animation: skShimmer 1.3s ease-in-out infinite; }
+  .sk-bar { height: 15px; width: 42%; }
+  .sk-bar.w2 { width: 68%; }
+  .sk-hero { height: 190px; }
+  .sk-row { display: flex; gap: 14px; }
+  .sk-row .sk { flex: 1; height: 92px; }
+  @keyframes skShimmer { 0% { background-position: 100% 50%; } 100% { background-position: 0 50%; } }
+  @media (prefers-reduced-motion: reduce) { .sk { animation: none; } }
+
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .hero-blob { animation: none; }
@@ -828,7 +857,10 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   <div class="about-box reveal">
     <div class="about-avatar">D</div>
     <div>
-      <h3>Hi, I'm Dylan 👋</h3>
+      <h3><span class="draw-wrap">Hi, I'm Dylan
+        <svg class="draw-underline" id="drawUnderline" viewBox="0 0 300 16" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M3,11 C58,3 108,15 152,8 C196,1 248,12 297,5" />
+        </svg></span> 👋</h3>
       <p>Hi, my name is Dylan, a student at Skyline High School — dual enrolled as a Running Start student at Bellevue College — and a website developer looking to work on my portfolio.</p>
       <p class="why">No agency overhead, no account managers, no middlemen — you work directly with the person designing and building your site, from the first call to launch. Your project gets my full, hands-on attention.</p>
     </div>
@@ -927,7 +959,7 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 </footer>
 
 <div class="site-modal" id="vandmModal" aria-hidden="true">
-  <div class="site-modal-frame">
+  <div class="site-modal-frame" style="position:relative;">
     <div class="site-modal-bar">
       <div class="dots"><span></span><span></span><span></span></div>
       <div class="modal-url" id="modalUrlLabel">Live site preview</div>
@@ -935,6 +967,13 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         <a href="work/vandm/index.html" target="_blank" rel="noopener" title="Open in new tab" id="modalNewTab">⤢</a>
         <button id="modalClose" aria-label="Close preview">✕</button>
       </div>
+    </div>
+    <!-- Skeleton shown while the bundled site loads, so the frame is never blank -->
+    <div class="frame-loader" id="frameLoader" aria-hidden="true">
+      <div class="sk sk-bar"></div>
+      <div class="sk sk-bar w2"></div>
+      <div class="sk sk-hero"></div>
+      <div class="sk-row"><div class="sk"></div><div class="sk"></div><div class="sk"></div></div>
     </div>
     <iframe id="vandmFrame" title="Live website preview" loading="lazy"></iframe>
   </div>
@@ -951,8 +990,16 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   });
   var vandmModal = document.getElementById('vandmModal');
   var vandmFrame = document.getElementById('vandmFrame');
+  var frameLoader = document.getElementById('frameLoader');
+  vandmFrame.addEventListener('load', function () {
+    if (vandmFrame.getAttribute('src')) frameLoader.classList.add('hidden');
+  });
+
   function openSite(src, label) {
-    if (vandmFrame.getAttribute('src') !== src) vandmFrame.src = src;
+    if (vandmFrame.getAttribute('src') !== src) {
+      frameLoader.classList.remove('hidden');   // show skeleton for the new site
+      vandmFrame.src = src;
+    }
     document.getElementById('modalUrlLabel').textContent = label;
     document.getElementById('modalNewTab').href = src;
     vandmModal.classList.add('open');
@@ -1225,6 +1272,27 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       scale: 0.94, duration: 0.8, ease: 'back.out(1.4)',
       scrollTrigger: { trigger: '.pricing-grid', start: 'top 80%' }
     });
+  }
+
+  /* ---------- #8 Self-drawing underline ---------- */
+  var underline = document.getElementById('drawUnderline');
+  if (underline) {
+    var path = underline.querySelector('path');
+    var len = path.getTotalLength();
+    gsap.set(path, { strokeDasharray: len, strokeDashoffset: len });
+    gsap.to(path, {
+      strokeDashoffset: 0, duration: 1.1, ease: 'power2.inOut',
+      scrollTrigger: { trigger: '.about-box', start: 'top 78%' }
+    });
+  }
+
+  /* ---------- #18 Slow gradient drift across the hero accent ---------- */
+  var accent = document.querySelector('.hero h1 .accent');
+  if (accent) {
+    gsap.fromTo(accent,
+      { backgroundPosition: '0% 50%' },
+      { backgroundPosition: '100% 50%', duration: 9, ease: 'sine.inOut',
+        repeat: -1, yoyo: true });
   }
 
   ScrollTrigger.refresh();
