@@ -113,6 +113,11 @@
   footer .socials a { text-decoration: none; opacity: 0.8; font-weight: 500; }
   footer .socials a:hover { opacity: 1; color: var(--terracotta); }
   footer small { opacity: 0.6; display: block; margin-top: 1rem; }
+  .skip-link { position:absolute; left:-9999px; top:0; background:var(--espresso); color:var(--cream);
+    padding:.7rem 1.2rem; z-index:999; border-radius:0 0 8px 0; }
+  .skip-link:focus { left:0; }
+  .ticker-track { display:inline-flex; white-space:nowrap; will-change:transform; }
+  @media (prefers-reduced-motion: reduce) { .ticker-track { animation:none !important; } }
   .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; max-width: 1000px; margin: 0 auto; }
   .review { background: var(--paper); border: 1px solid var(--border); border-radius: 18px; padding: 1.8rem; position: relative; }
   .review .stars { color: var(--terracotta); font-size: 1.1rem; letter-spacing: 2px; margin-bottom: 0.7rem; }
@@ -130,6 +135,7 @@
 </head>
 <body>
 <div class="demo-flag">⚠️ Example site — a design demo by Dylan Lankford. Hearth &amp; Crumb is not a real business.</div>
+<a class="skip-link" href="#menu">Skip to menu</a>
 <nav>
   <a href="#" class="logo">Hearth <span>&amp;</span> Crumb</a>
   <ul class="nav-links">
@@ -241,5 +247,91 @@
   </div>
   <small>© 2026 Hearth &amp; Crumb Bakery · A concept site by Dylan Lankford</small>
 </footer>
+
+<!-- Motion layer: GSAP for scroll reveals, Lenis for smooth scrolling.
+     Everything uses gsap.from(), so if these scripts fail to load the page
+     still renders fully — nothing is hidden by CSS waiting on JS. -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+(function () {
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduced || typeof gsap === "undefined") return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // --- Smooth scrolling, kept in sync with ScrollTrigger ---
+  if (typeof Lenis !== "undefined") {
+    var lenis = new Lenis({ duration: 1.1 });
+    lenis.on("scroll", ScrollTrigger.update);
+    gsap.ticker.add(function (t) { lenis.raf(t * 1000); });
+    gsap.ticker.lagSmoothing(0);
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener("click", function (e) {
+        var target = document.querySelector(a.getAttribute("href"));
+        if (target) { e.preventDefault(); lenis.scrollTo(target, { offset: -70 }); }
+      });
+    });
+  }
+
+  // --- Hero entrance ---
+  gsap.timeline({ defaults: { ease: "power3.out" } })
+    .from(".hero .eyebrow", { y: 20, opacity: 0, duration: 0.6 })
+    .from(".hero h1", { y: 34, opacity: 0, duration: 0.9 }, "-=0.35")
+    .from(".hero p", { y: 24, opacity: 0, duration: 0.7 }, "-=0.55")
+    .from(".hero .btn", { y: 20, opacity: 0, duration: 0.6, stagger: 0.12 }, "-=0.45")
+    .from(".hero-art", { scale: 0.92, opacity: 0, duration: 1.1 }, "-=0.9")
+    .from(".hero-art .stamp", { y: 18, opacity: 0, duration: 0.5 }, "-=0.3");
+
+  // --- Section headers ---
+  gsap.utils.toArray(".sec-head").forEach(function (el) {
+    gsap.from(el, {
+      y: 30, opacity: 0, duration: 0.8, ease: "power2.out",
+      scrollTrigger: { trigger: el, start: "top 85%" }
+    });
+  });
+
+  // --- Staggered groups ---
+  [[".menu-grid", ".menu-cat"], [".values-grid", ".value"],
+   [".reviews-grid", ".review"]].forEach(function (pair) {
+    var container = document.querySelector(pair[0]);
+    if (!container) return;
+    gsap.from(container.querySelectorAll(pair[1]), {
+      y: 34, opacity: 0, duration: 0.7, ease: "power2.out", stagger: 0.13,
+      scrollTrigger: { trigger: container, start: "top 82%" }
+    });
+  });
+
+  // --- Visit block slides in from the sides ---
+  gsap.from(".visit-info", {
+    x: -34, opacity: 0, duration: 0.8, ease: "power2.out",
+    scrollTrigger: { trigger: ".visit", start: "top 78%" }
+  });
+  gsap.from(".hours-card", {
+    x: 34, opacity: 0, duration: 0.8, ease: "power2.out",
+    scrollTrigger: { trigger: ".visit", start: "top 78%" }
+  });
+
+  // --- Gentle parallax on the hero artwork ---
+  gsap.to(".hero-art", {
+    yPercent: 12, ease: "none",
+    scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true }
+  });
+
+  // --- Marquee the ticker instead of leaving it static ---
+  var ticker = document.querySelector(".ticker");
+  if (ticker) {
+    var track = document.createElement("div");
+    track.className = "ticker-track";
+    while (ticker.firstChild) track.appendChild(ticker.firstChild);
+    track.innerHTML += track.innerHTML; // duplicate for a seamless loop
+    ticker.appendChild(track);
+    gsap.to(track, {
+      xPercent: -50, duration: 26, ease: "none", repeat: -1
+    });
+  }
+})();
+</script>
 </body>
 </html>

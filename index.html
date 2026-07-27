@@ -389,6 +389,54 @@
   .contact-alt { margin-top: 1.25rem !important; font-size: 0.92rem !important; }
   .contact-alt a { color: #7eb3ff; font-weight: 600; }
 
+  /* ===== Quote form ===== */
+  .quote-form {
+    max-width: 620px; margin: 0 auto; text-align: left;
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px; padding: 1.9rem 1.7rem;
+    backdrop-filter: blur(6px);
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .field { margin-bottom: 1rem; }
+  .field label {
+    display: block; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.01em;
+    color: rgba(255,255,255,0.72); margin-bottom: 0.4rem;
+  }
+  .field label .req { color: #7eb3ff; }
+  .field input, .field select, .field textarea {
+    width: 100%; font: inherit; font-size: 0.95rem; color: #fff;
+    background: rgba(9,16,32,0.55); border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 9px; padding: 0.7rem 0.85rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .field textarea { resize: vertical; min-height: 110px; }
+  .field select { appearance: none; cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath fill='%237eb3ff' d='M6 8 0 0h12z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 0.9rem center; background-size: 10px;
+    padding-right: 2.2rem;
+  }
+  .field select option { background: #0d1526; color: #fff; }
+  .field input::placeholder, .field textarea::placeholder { color: rgba(255,255,255,0.34); }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(74,144,226,0.22);
+  }
+  .field input:user-invalid, .field textarea:user-invalid { border-color: #e2725b; }
+  .quote-form .btn { width: 100%; justify-content: center; margin-top: 0.4rem; }
+  .quote-form .btn[disabled] { opacity: 0.6; cursor: progress; }
+  .form-note { font-size: 0.8rem; color: rgba(255,255,255,0.5); text-align: center; margin: 0.9rem 0 0; }
+  .form-status { font-size: 0.92rem; margin: 0.9rem 0 0; text-align: center; min-height: 1.2em; }
+  .form-status.error { color: #ffb4a4; }
+  .form-success {
+    text-align: center; padding: 1.5rem 0.5rem;
+  }
+  .form-success h3 { font-family: var(--font-display); font-size: 1.35rem; color: #fff; margin-bottom: 0.5rem; }
+  .form-success p { margin: 0 auto; color: rgba(255,255,255,0.75); }
+  .hp-field { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  @media (max-width: 560px) {
+    .form-row { grid-template-columns: 1fr; gap: 0; }
+    .quote-form { padding: 1.5rem 1.2rem; }
+  }
+
   footer { background: var(--navy); color: rgba(255,255,255,0.55); text-align: center; padding: 1.5rem 5vw; font-size: 0.85rem; border-top: 1px solid rgba(255,255,255,0.08); }
   footer p { margin: 0.15rem 0; }
   .footer-links a { color: rgba(255,255,255,0.7); text-decoration: none; }
@@ -791,11 +839,55 @@
   <h2 class="reveal">Let's build your website</h2>
   <p class="reveal">Tell me about your business and I'll send you a free, no-pressure quote — usually within a day. Proudly serving Issaquah, WA and the surrounding Eastside.</p>
   <div class="reveal">
-    <div class="hero-actions">
-      <a class="btn btn-primary" href="mailto:dylmlank@gmail.com?subject=Website%20Quote%20Request">Email Me for a Free Quote</a>
+    <form class="quote-form" id="quoteForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <div class="form-row">
+        <div class="field">
+          <label for="qf-name">Your name <span class="req">*</span></label>
+          <input type="text" id="qf-name" name="name" autocomplete="name" required placeholder="Jane Smith">
+        </div>
+        <div class="field">
+          <label for="qf-business">Business name</label>
+          <input type="text" id="qf-business" name="business" autocomplete="organization" placeholder="Smith Landscaping">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="field">
+          <label for="qf-email">Email <span class="req">*</span></label>
+          <input type="email" id="qf-email" name="email" autocomplete="email" required placeholder="jane@example.com">
+        </div>
+        <div class="field">
+          <label for="qf-phone">Phone</label>
+          <input type="tel" id="qf-phone" name="phone" autocomplete="tel" placeholder="(425) 555-0142">
+        </div>
+      </div>
+      <div class="field">
+        <label for="qf-budget">What are you looking for?</label>
+        <select id="qf-budget" name="package">
+          <option value="Not sure yet">Not sure yet — help me pick</option>
+          <option value="Starter — $799">Starter site — $799</option>
+          <option value="Standard — $1,299">Standard site — $1,299</option>
+          <option value="Premium — $1,999">Premium site — $1,999</option>
+          <option value="Redesign of existing site">Redesign of my existing site</option>
+          <option value="Care plan only — $49/mo">Care plan only — $49/mo</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="qf-message">Tell me about your business <span class="req">*</span></label>
+        <textarea id="qf-message" name="message" required placeholder="What you do, who your customers are, and anything you'd like the site to do (booking, quotes, gallery, etc.)"></textarea>
+      </div>
+      <input type="hidden" name="_subject" value="New website quote request">
+      <div class="hp-field" aria-hidden="true">
+        <label for="qf-company">Leave this field empty</label>
+        <input type="text" id="qf-company" name="_gotcha" tabindex="-1" autocomplete="off">
+      </div>
+      <button type="submit" class="btn btn-primary" id="quoteSubmit">Send my free quote request</button>
+      <p class="form-status" id="quoteStatus" role="status" aria-live="polite"></p>
+      <p class="form-note">No spam, no pressure. I usually reply within a day.</p>
+    </form>
+    <div class="hero-actions" style="margin-top:1.75rem">
       <a class="btn btn-ghost" href="tel:+14254361066">Call or Text (425) 436-1066</a>
     </div>
-    <p class="contact-alt">or write to <a href="mailto:dylmlank@gmail.com">dylmlank@gmail.com</a></p>
+    <p class="contact-alt">or write to <a href="mailto:dylmlank@gmail.com?subject=Website%20Quote%20Request">dylmlank@gmail.com</a></p>
   </div>
 </section>
 
@@ -881,6 +973,42 @@
     });
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(function (el) { observer.observe(el); });
+
+  var quoteForm = document.getElementById('quoteForm');
+  var quoteStatus = document.getElementById('quoteStatus');
+  var quoteSubmit = document.getElementById('quoteSubmit');
+
+  quoteForm.addEventListener('submit', function (e) {
+    // Endpoint not configured yet — let the browser POST normally so nothing is silently lost.
+    if (quoteForm.action.indexOf('YOUR_FORM_ID') !== -1) return;
+
+    e.preventDefault();
+    quoteStatus.className = 'form-status';
+    quoteStatus.textContent = '';
+    quoteSubmit.disabled = true;
+    quoteSubmit.textContent = 'Sending…';
+
+    fetch(quoteForm.action, {
+      method: 'POST',
+      body: new FormData(quoteForm),
+      headers: { Accept: 'application/json' }
+    }).then(function (res) {
+      if (!res.ok) throw new Error('Bad response');
+      quoteForm.innerHTML =
+        '<div class="form-success">' +
+        '<h3>Thanks — your request is in.</h3>' +
+        "<p>I'll get back to you within a day, usually sooner. " +
+        'If it\'s urgent, text me at <a href="tel:+14254361066">(425) 436-1066</a>.</p>' +
+        '</div>';
+    }).catch(function () {
+      quoteStatus.className = 'form-status error';
+      quoteStatus.innerHTML =
+        'Something went wrong sending that. Please email ' +
+        '<a href="mailto:dylmlank@gmail.com?subject=Website%20Quote%20Request">dylmlank@gmail.com</a> instead.';
+      quoteSubmit.disabled = false;
+      quoteSubmit.textContent = 'Send my free quote request';
+    });
+  });
 </script>
 
 </body>
