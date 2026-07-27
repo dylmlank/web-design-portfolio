@@ -494,6 +494,10 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   .service-icon { transition: transform .35s cubic-bezier(.34,1.56,.64,1), background .3s; }
   .service-card:hover .service-icon { transform: translateY(-4px) rotate(-7deg) scale(1.09); }
 
+  /* Lottie accent above the contact heading */
+  .lottie-pulse { width: 84px; height: 84px; margin: 0 auto 0.6rem; }
+  .lottie-pulse svg { display: block; }
+
   /* #24 Loading skeleton for the live-site modal */
   .frame-loader { position: absolute; inset: 42px 0 0 0; background: var(--surface);
     display: flex; flex-direction: column; gap: 14px; padding: 26px; z-index: 2; }
@@ -898,6 +902,7 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 
 <section id="contact">
   <svg class="wave" viewBox="0 0 1440 70" preserveAspectRatio="none" aria-hidden="true"><path d="M0,35 C360,80 1080,-15 1440,35 L1440,0 L0,0 Z" fill="currentColor"></path></svg>
+  <div class="lottie-pulse" id="lottiePulse" aria-hidden="true"></div>
   <h2 class="reveal">Let's build your website</h2>
   <p class="reveal">Tell me about your business and I'll send you a free, no-pressure quote — usually within a day. Proudly serving Issaquah, WA and the surrounding Eastside.</p>
   <div class="reveal">
@@ -1093,6 +1098,32 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lottie-web@5.12.2/build/player/lottie_light.min.js"></script>
+<script>
+(function () {
+  // Lottie accent. Skipped entirely under reduced motion, and silently absent
+  // if the player or JSON fails to load — it's decorative, never load-bearing.
+  var host = document.getElementById('lottiePulse');
+  if (!host || typeof lottie === 'undefined') return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var anim = lottie.loadAnimation({
+    container: host,
+    renderer: 'svg',
+    loop: true,
+    autoplay: false,
+    path: 'assets/pulse.json'
+  });
+
+  // Only animate while it's actually on screen.
+  anim.addEventListener('DOMLoaded', function () {
+    if (!('IntersectionObserver' in window)) { anim.play(); return; }
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { e.isIntersecting ? anim.play() : anim.pause(); });
+    }, { threshold: 0.2 }).observe(host);
+  });
+})();
+</script>
 <script>
 (function () {
   var root = document.documentElement;
